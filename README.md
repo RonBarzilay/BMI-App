@@ -1,4 +1,4 @@
-# bmi_calaulator_app_new
+# bmi_calaulator_app
 
 A new Flutter project.
 
