@@ -30,7 +30,7 @@ int height = 180;
 int weight = 75;
 
 // int for age
-int age = 20;
+int age = 35;
 
 // const int for MAX age
 const int maxAge = 120;
@@ -119,32 +119,36 @@ class _InputWindowState extends State<InputWindow> {
         centerTitle: true,
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: GestureDetector(
-              onTap: () {
-                showCupertinoDialog(
-                    barrierDismissible: true,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return CupertinoAlertDialog(
-                        title: Text('About BMI App'),
-                        content: Text(
-                            '\n BMI - Body Mass Index \n\n It is a measure that uses your height and weight to work out if your weight is healthy \n\n Developed By \n Ron Barzilay'),
-                        actions: [
-                          CupertinoDialogAction(
-                              onPressed: () {
-                                Navigator.of(context, rootNavigator: true)
-                                    .pop('dialog');
-                              },
-                              child: Text('Got it, Thanks')),
-                          // CupertinoDialogAction(child: Text('Got it, Thanks')),
-                        ],
-                      );
-                    });
-              },
-              child: Icon(
-                Icons.info_outline,
-                size: 27,
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Container(
+              width: 50,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
+                  showCupertinoDialog(
+                      barrierDismissible: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CupertinoAlertDialog(
+                          title: const Text('About BMI App'),
+                          content: const Text(
+                              '\n BMI - Body Mass Index \n\n It is a measure that uses your height and weight to work out if your weight is healthy \n\n Developed By \n Ron Barzilay'),
+                          actions: [
+                            CupertinoDialogAction(
+                                onPressed: () {
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop('dialog');
+                                },
+                                child: const Text('Got it, Thanks')),
+                            // CupertinoDialogAction(child: Text('Got it, Thanks')),
+                          ],
+                        );
+                      });
+                },
+                child: const Icon(
+                  Icons.info_outline,
+                  size: 27,
+                ),
               ),
             ),
           )
@@ -306,10 +310,10 @@ class _InputWindowState extends State<InputWindow> {
                                       bottomLabelStyle: kMainLabelTextStyle),
                                   customColors:
                                       CustomSliderColors(progressBarColors: [
-                                    Color(0x8E208EE7),
+                                    const Color(0x8E208EE7),
                                     Colors.green,
                                     kBottomBarColor,
-                                  ], trackColor: Color(0x45208EE7))),
+                                  ], trackColor: const Color(0x45208EE7))),
                             ),
                           ),
                         ],

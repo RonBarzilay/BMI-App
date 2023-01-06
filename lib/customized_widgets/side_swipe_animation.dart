@@ -101,6 +101,7 @@ class _SideSwipeAnimationState extends State<SideSwipeAnimation>
     initState();
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onHorizontalDragStart: (details) {
         xStartSwipe = details.globalPosition.dx.floorToDouble();
       },
@@ -108,48 +109,50 @@ class _SideSwipeAnimationState extends State<SideSwipeAnimation>
         xEndSwipe = details.globalPosition.dx.floorToDouble();
         calculateDistanceAndNavigate(xStartSwipe, xEndSwipe);
       },
-      child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedTextKit(
-              animatedTexts: [
-                ColorizeAnimatedText(
-                  widget.label,
-                  speed: const Duration(milliseconds: 1000),
-                  textStyle: kSwipeableButtonTextStyle,
-                  colors: [Colors.white, Colors.grey, Colors.white10],
-                ),
-              ],
-              isRepeatingAnimation: true,
-              repeatForever: true,
-              onNext: (int a, bool aa) {
-                sideController.reset();
-              },
-            ),
-            const SizedBox(width: 10.0),
-            AnimatedBuilder(
-              animation: sideController,
-              builder: (BuildContext context, _) {
-                return Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: colorAnimation.value,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: colorAnimation.value,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: colorAnimation.value,
-                    )
-                  ],
-                );
-              },
-            ),
-          ]),
+      child: Container(
+        child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedTextKit(
+                animatedTexts: [
+                  ColorizeAnimatedText(
+                    widget.label,
+                    speed: const Duration(milliseconds: 1000),
+                    textStyle: kSwipeableButtonTextStyle,
+                    colors: [Colors.white, Colors.grey, Colors.white10],
+                  ),
+                ],
+                isRepeatingAnimation: true,
+                repeatForever: true,
+                onNext: (int a, bool aa) {
+                  sideController.reset();
+                },
+              ),
+              const SizedBox(width: 10.0),
+              AnimatedBuilder(
+                animation: sideController,
+                builder: (BuildContext context, _) {
+                  return Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: colorAnimation.value,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: colorAnimation.value,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: colorAnimation.value,
+                      )
+                    ],
+                  );
+                },
+              ),
+            ]),
+      ),
     );
   }
 }
